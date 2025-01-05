@@ -57,6 +57,7 @@ export default function Main() {
         const formData = new FormData(e.target)
         const newIngredient = formData.get("ingredient")
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+        e.target.reset()
     }
     
     return (
