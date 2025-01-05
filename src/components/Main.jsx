@@ -39,6 +39,7 @@ export default function Main() {
             if (!response.ok) {
                 throw new Error(`Worker Error: ${data.error}`)
             }
+            console.log(data)
             return data.content
 
         } catch(err) {
