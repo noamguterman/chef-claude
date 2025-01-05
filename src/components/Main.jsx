@@ -48,8 +48,11 @@ export default function Main() {
     }
 
     async function getRecipe() {
+        console.log('Getting recipe...')
         const recipeMarkdown = await getRecipeFromChefClaude(ingredients)
+        console.log('Recipe:', recipeMarkdown)
         setRecipe(recipeMarkdown)
+        console.log('Recipe set')
     }
 
     function addIngredient(e) {
