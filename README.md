@@ -5,7 +5,7 @@ Generate recipes based on available ingredients using **React** and the **Anthro
 ![Chef Claude](https://raw.githubusercontent.com/noamguterman/chef-claude/refs/heads/main/chef-claude-preview.png)
 
 ## 🚀 Live Demo  
-🔗 [Try Chef Claude]([https://your-live-demo-link.com](https://noamguterman.github.io/chef-claude/))  
+🔗 [Try Chef Claude](https://noamguterman.github.io/chef-claude/)  
 
 ---
 
