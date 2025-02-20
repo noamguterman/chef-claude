@@ -50,6 +50,9 @@ main {
   min-width: 9.375em;
   max-width: 25em;
 }
+input.error {
+  border: 1px solid #DC2626;
+}
 
 .add-ingredient-form > button {
   font-family: Inter, sans-serif;
@@ -61,6 +64,9 @@ main {
   font-size: .875rem;
   font-weight: 500;
   cursor: pointer;
+}
+.add-ingredient-form > button:hover {
+  background-color: #1F2937;
 }
 
 .add-ingredient-form > button::before {
@@ -109,6 +115,9 @@ ul.ingredients-list > li {
   font-size: 0.875rem;
   cursor: pointer;
 }
+.get-recipe-container button:hover {
+  background-color: #E07A5F;
+}
 
 .suggested-recipe-container {
   color: #475467;
@@ -119,6 +128,17 @@ ul.ingredients-list > li {
 
 .suggested-recipe-container ul li, .suggested-recipe-container ol li {
   margin-bottom: .5em;
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #D17557;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 @media (max-width: 600px) {
@@ -155,4 +175,26 @@ ul.ingredients-list > li {
   .get-recipe-container p {
     margin-bottom: 2em;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .get-recipe-container button:hover {
+    animation: wiggle 0.3s ease-in-out;
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

@@ -5,6 +5,8 @@ import ClaudeRecipe from "./ClaudeRecipe"
 export default function Main() {
     const [ingredients, setIngredients] = React.useState([])
     const [recipe, setRecipe] = React.useState("")
+    const [errorState, setErrorState] = React.useState(false)
+    const [isLoading, setIsLoading] = React.useState(false)
     const recipeSection = React.useRef(null)
     
     React.useEffect(() => {
@@ -48,22 +50,33 @@ export default function Main() {
     }
 
     async function getRecipe() {
-        const recipeMarkdown = await getRecipeFromChefClaude(ingredients)
-        setRecipe(recipeMarkdown)
+        setIsLoading(true)
+        try {
+            const recipeMarkdown = await getRecipeFromChefClaude(ingredients)
+            setRecipe(recipeMarkdown)
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     function addIngredient(e) {
         e.preventDefault()
         const formData = new FormData(e.target)
         const newIngredient = formData.get("ingredient")
-        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
-        e.target.reset()
+        if (newIngredient === "") {
+            setErrorState(true)
+        } else {
+            setErrorState(false)
+            setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+            e.target.reset()
+        }
     }
     
     return (
         <main>
             <form onSubmit={addIngredient} className="add-ingredient-form">
                 <input
+                    className={errorState ? "error" : ""}
                     type="text"
                     placeholder="e.g. oregano"
                     aria-label="Add ingredient"
@@ -77,6 +90,7 @@ export default function Main() {
                     ref={recipeSection}
                     ingredients={ingredients}
                     getRecipe={getRecipe}
+                    isLoading={isLoading}
                 />
             }
 
